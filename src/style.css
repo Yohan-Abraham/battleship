@@ -1,0 +1,84 @@
+/* color: 
+--background: #0B1320;
+--surface: #162033;
+--surface-light: #22314D;
+
+--primary: #4A90E2;
+--primary-hover: #6BA4E7;
+
+--hit: #E63946;
+--miss: #6B7280;
+
+--text: #F8FAFC;
+--text-secondary: #B8C2D1;
+
+--border: #2D3A52; */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0b1320;
+  color: #f8fafc;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  height: 10%;
+  text-align: center;
+  padding-top: 1.5em;
+  font-size: x-large;
+}
+
+#game-screen {
+  height: 90%;
+  display: flex;
+  margin: 0 10em;
+}
+
+.player-card {
+  width: 50vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  padding: 2em;
+}
+
+.player-name {
+  font-size: larger;
+}
+
+.board {
+  height: 50vh;
+  width: 50vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.board-cell {
+  background-color: #162033;
+  border: 1px solid #2d3a52;
+}
+
+#ship {
+  background-color: #283650;
+}
+
+#miss {
+  border: 1px solid lightblue;
+  border-radius: 20px;
+}
+
+#hit {
+  border: 1px solid red;
+  border-radius: 20px;
+}
