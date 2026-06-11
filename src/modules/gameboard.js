@@ -18,11 +18,11 @@ class GameBoard {
     this.currentShips++;
     if (direction === 'horizontal') {
       for (let i = 0; i < shipLength; i++) {
-        this.board[coordinates[0] + i][coordinates[1]] = shipReference;
+        this.board[coordinates[0]][coordinates[1] + i] = shipReference;
       }
     } else if (direction === 'vertical') {
       for (let i = 0; i < shipLength; i++) {
-        this.board[coordinates[0]][coordinates[1] + i] = shipReference;
+        this.board[coordinates[0] + i][coordinates[1]] = shipReference;
       }
     }
   }
