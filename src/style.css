@@ -69,16 +69,19 @@ nav {
   border: 1px solid #2d3a52;
 }
 
-#ship {
+#computer .ship {
+  background-color: #162033;
+  border: 1px solid #2d3a52;
+}
+
+.ship {
   background-color: #283650;
 }
 
-#miss {
+.miss {
   border: 1px solid lightblue;
-  border-radius: 20px;
 }
 
-#hit {
+.hit {
   border: 1px solid red;
-  border-radius: 20px;
 }

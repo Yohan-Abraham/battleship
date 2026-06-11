@@ -1,6 +1,6 @@
 import { Player } from './player';
 
-function initializeGame(name) {
+function initializeGame(name = 'player') {
   const player = new Player();
   const computer = new Player();
 
@@ -22,4 +22,26 @@ function initializeGame(name) {
   return [player, computer];
 }
 
-export { initializeGame };
+function computerTurn(player) {
+  let attackRow = Math.floor(Math.random() * 10);
+  let attackCol = Math.floor(Math.random() * 10);
+  let attack = player.receiveAttack([attackRow, attackCol]);
+  while (attack == 'invalid') {
+    attackRow = Math.floor(Math.random() * 10);
+    attackCol = Math.floor(Math.random() * 10);
+    attack = player.receiveAttack([attackRow, attackCol]);
+  }
+}
+
+function playerTurn(player, row, col) {
+  let attack = player[1].board.receiveAttack([row, col]);
+  console.log(attack);
+  if (attack === 'invalid') {
+    return 'invalid';
+  } else {
+    computerTurn(player[0].board);
+  }
+  return attack;
+}
+
+export { initializeGame, playerTurn };
