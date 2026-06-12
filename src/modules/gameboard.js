@@ -28,11 +28,27 @@ class GameBoard {
     return true;
   }
 
+  getShipLength() {
+    if (this.currentShips == 0) {
+      return 5;
+    }
+    if (this.currentShips == 1) {
+      return 4;
+    }
+    if (this.currentShips == 2 || this.currentShips == 3) {
+      return 3;
+    }
+    if (this.currentShips == 4) {
+      return 2;
+    } else {
+      return 'startGame';
+    }
+  }
+
   placeShip(shipLength, coordinates, direction = 'horizontal', name) {
     if (!this.validatePlacement(shipLength, coordinates, direction)) {
       return 'invalid';
     }
-
     const ship = new Ship(shipLength);
     const shipReference = {
       name: name,

@@ -99,3 +99,19 @@ nav {
 input {
   width: 15em;
 }
+
+.ship {
+  background-color: #283650;
+}
+
+.water {
+  background-color: #162033;
+}
+
+.preview-valid {
+  background-color: white;
+}
+
+.preview-invalid {
+  background-color: red;
+}
