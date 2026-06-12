@@ -9,7 +9,30 @@ class GameBoard {
       .map(() => Array(BOARD_SIZE).fill(null));
   }
 
+  validatePlacement(length, coordinates, direction) {
+    const [startRow, startCol] = coordinates;
+
+    for (let i = 0; i < length; i++) {
+      const row = direction === 'vertical' ? startRow + i : startRow;
+      const col = direction === 'horizontal' ? startCol + i : startCol;
+
+      if (row < 0 || row >= 10 || col < 0 || col >= 10) {
+        return false;
+      }
+
+      if (this.board[row][col] !== null) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   placeShip(shipLength, coordinates, direction = 'horizontal', name) {
+    if (!this.validatePlacement(shipLength, coordinates, direction)) {
+      return 'invalid';
+    }
+
     const ship = new Ship(shipLength);
     const shipReference = {
       name: name,
@@ -25,6 +48,7 @@ class GameBoard {
         this.board[coordinates[0] + i][coordinates[1]] = shipReference;
       }
     }
+    return 'placed';
   }
 
   allShipsSunk() {

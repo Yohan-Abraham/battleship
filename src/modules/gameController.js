@@ -22,6 +22,10 @@ function initializeGame(name = 'player') {
   return [player, computer];
 }
 
+function createPlayer() {
+  return new Player();
+}
+
 function computerTurn(player) {
   let attackRow = Math.floor(Math.random() * 10);
   let attackCol = Math.floor(Math.random() * 10);
@@ -38,10 +42,23 @@ function playerTurn(player, row, col) {
   console.log(attack);
   if (attack === 'invalid') {
     return 'invalid';
+  }
+  if (player[1].board.allShipsSunk()) {
+    return {
+      result: attack,
+      computerSunk: player[1].board.allShipsSunk() ? true : false,
+      playerSunk: player[0].board.allShipsSunk() ? true : false,
+      playerName: player[0].name,
+    };
   } else {
     computerTurn(player[0].board);
   }
-  return attack;
+  return {
+    result: attack,
+    computerSunk: player[1].board.allShipsSunk() ? true : false,
+    playerSunk: player[0].board.allShipsSunk() ? true : false,
+    playerName: player[0].name,
+  };
 }
 
-export { initializeGame, playerTurn };
+export { initializeGame, playerTurn, createPlayer };

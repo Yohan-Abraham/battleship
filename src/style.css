@@ -79,9 +79,23 @@ nav {
 }
 
 .miss {
-  border: 1px solid lightblue;
+  border: 1px solid #6b7280;
 }
 
 .hit {
-  border: 1px solid red;
+  border: 1px solid #e63946;
+}
+
+#playerProfile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  height: 90%;
+  width: 100%;
+}
+
+input {
+  width: 15em;
 }
