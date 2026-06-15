@@ -115,3 +115,75 @@ input {
 .preview-invalid {
   background-color: red;
 }
+
+#direction {
+  border-radius: 10px;
+  padding: 0.5em;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  background-color: #162033;
+  border: 1px solid #2d3a52;
+  border-radius: 12px;
+  padding: 2.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  min-width: 300px;
+  text-align: center;
+}
+
+.modal h2 {
+  font-size: 1.8em;
+  color: #f8fafc;
+}
+
+.modal p {
+  color: #94a3b8;
+  font-size: 1em;
+}
+
+.modal button {
+  margin-top: 0.5em;
+  padding: 0.6em 1.8em;
+  background-color: #283650;
+  color: #f8fafc;
+  border: 1px solid #2d3a52;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  background-color: #2d3a52;
+}
+
+#start-game {
+  padding: 0.6em 1.8em;
+  background-color: #283650;
+  color: #94a3b8;
+  border: 1px solid #2d3a52;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: not-allowed;
+}
+
+#start-game.ready {
+  color: #f8fafc;
+  cursor: pointer;
+}
+
+#start-game.ready:hover {
+  background-color: #2d3a52;
+}

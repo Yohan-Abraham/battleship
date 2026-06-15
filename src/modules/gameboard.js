@@ -1,6 +1,7 @@
 import { Ship } from './ship';
 
 const BOARD_SIZE = 10;
+const SHIP_LENGTHS = [5, 4, 3, 3, 2];
 class GameBoard {
   currentShips = 0;
   constructor() {
@@ -29,20 +30,7 @@ class GameBoard {
   }
 
   getShipLength() {
-    if (this.currentShips == 0) {
-      return 5;
-    }
-    if (this.currentShips == 1) {
-      return 4;
-    }
-    if (this.currentShips == 2 || this.currentShips == 3) {
-      return 3;
-    }
-    if (this.currentShips == 4) {
-      return 2;
-    } else {
-      return 'startGame';
-    }
+    return SHIP_LENGTHS[this.currentShips] ?? 'startGame';
   }
 
   placeShip(shipLength, coordinates, direction = 'horizontal', name) {

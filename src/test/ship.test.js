@@ -12,3 +12,14 @@ test('Ship is sunk', () => {
   ship.hit();
   expect(ship.isSunk()).toBe(true);
 });
+
+test('Ship is sunk flse', () => {
+  const ship = new Ship(2);
+  ship.hit();
+  expect(ship.isSunk()).toBe(false);
+});
+
+test('length is correct', () => {
+  const ship = new Ship(2);
+  expect(ship.length).toBe(2);
+});

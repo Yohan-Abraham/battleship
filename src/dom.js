@@ -50,6 +50,23 @@ function createGameScreen(grid) {
     </div>`;
 }
 
+function showWinModal(winnerName) {
+  const overlay = document.createElement('div');
+  overlay.classList.add('modal-overlay');
+  overlay.innerHTML = `
+    <div class="modal">
+      <h2>Game Over</h2>
+      <p>${winnerName} wins the battle!</p>
+      <button id="play-again">Play Again</button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  document.querySelector('#play-again').addEventListener('click', () => {
+    overlay.remove();
+    startPage();
+  });
+}
+
 //work on player attacking logic
 function setupEventListeners(players) {
   const computerBoard = document.querySelector('#computer');
@@ -65,10 +82,12 @@ function setupEventListeners(players) {
     const newComputerBoard = createPlayerBoard(players[1].board);
     computerBoard.innerHTML = newComputerBoard;
     if (attack.computerSunk) {
-      alert(`${attack.playerName} wins`);
+      showWinModal(attack.playerName);
+      return;
     }
     if (attack.playerSunk) {
-      alert(`computer wins`);
+      showWinModal('computer');
+      return;
     }
     //computer turn
     const playerBoard = document.querySelector(`#${players[0].name}`);
@@ -121,6 +140,21 @@ function removePreview(shipLength, row, col, direction) {
 }
 
 function startPageListeners(temp) {
+  function checkStartReady() {
+    const name = document.querySelector('#playerName');
+    const startBtn = document.querySelector('#start-game');
+    const allPlaced = temp.board.currentShips === 5;
+    const hasName = name.value.trim() !== '';
+
+    if (allPlaced && hasName) {
+      startBtn.classList.add('ready');
+      startBtn.disabled = false;
+    } else {
+      startBtn.classList.remove('ready');
+      startBtn.disabled = true;
+    }
+  }
+
   const direction = document.querySelector('#direction');
   direction.addEventListener('click', () => {
     if (direction.textContent == 'Horizontal') {
@@ -170,12 +204,17 @@ function startPageListeners(temp) {
 
     if (result === 'invalid') return;
     const name = document.querySelector('#playerName');
-    if (temp.board.currentShips === 5) {
-      console.log(name.input);
-      initializeDom(name.input, temp.board);
-      return;
-    }
     playerboard.innerHTML = createPlayerBoard(temp.board);
+    checkStartReady();
+  });
+
+  document
+    .querySelector('#playerName')
+    .addEventListener('input', checkStartReady);
+
+  document.querySelector('#start-game').addEventListener('click', () => {
+    const name = document.querySelector('#playerName');
+    initializeDom(name.value, temp.board);
   });
 }
 
@@ -191,6 +230,7 @@ function startPage() {
     <div class='board'>
         ${createPlayerBoard(temp.board)}
     </div>
+    <button id="start-game" disabled>Start Game</button>
   </div>
   `;
 

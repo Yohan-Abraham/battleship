@@ -9,16 +9,29 @@ function initializeGame(name = 'player', board) {
   player.board = board;
   //computer ships
   computer.name = 'computer';
-  computer.board.placeShip(5, [0, 0], 'horizontal', 'carrier');
-  computer.board.placeShip(4, [2, 0], 'vertical', 'Battleship');
-  computer.board.placeShip(3, [3, 3], 'horizontal', 'cruiser');
-  computer.board.placeShip(3, [7, 0], 'horizontal', 'submarine');
-  computer.board.placeShip(2, [8, 0], 'vertical', 'destroyer');
+  computer.board = generateComputerBoard(computer.board);
+  console.log(computer.board);
   return [player, computer];
 }
 
 function createPlayer() {
   return new Player();
+}
+
+function generateComputerBoard(board) {
+  while (board.currentShips !== 5) {
+    let direction = Math.floor(Math.random() * 2);
+    if (direction == 0) {
+      direction = 'horizontal';
+    } else {
+      direction = 'vertical';
+    }
+    let row = Math.floor(Math.random() * 10);
+    let col = Math.floor(Math.random() * 10);
+    board.validatePlacement(board.getShipLength(), [row, col], direction);
+    board.placeShip(board.getShipLength(), [row, col], direction, 'carrier');
+  }
+  return board;
 }
 
 function computerTurn(player) {
